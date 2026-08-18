@@ -1,0 +1,547 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: #0A0A0A;
+    color: #F5F5F5;
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    padding: 16px 16px 80px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.app-wrapper {
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+}
+
+/* ===== PAGES ===== */
+.page {
+    display: none;
+    animation: fadeIn 0.25s ease;
+}
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADER ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-top: 4px;
+}
+
+.header__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #E53935;
+    letter-spacing: 1px;
+}
+
+/* ===== BALANCE CARD ===== */
+.balance-card {
+    background: #141414;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.balance-card__label {
+    font-size: 14px;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.balance-card__value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #F5F5F5;
+    margin-top: 4px;
+}
+
+/* ===== GOAL CARD ===== */
+.goal-card {
+    background: #141414;
+    border-radius: 12px;
+    padding: 12px 16px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.goal-card__label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #E53935;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.goal-card__progress-bar {
+    width: 100%;
+    height: 6px;
+    background: #2A2A2A;
+    border-radius: 3px;
+    margin: 8px 0 4px;
+    overflow: hidden;
+}
+
+.goal-card__progress-fill {
+    height: 100%;
+    background: #E53935;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.goal-card__text {
+    font-size: 11px;
+    color: #888;
+}
+
+/* ===== STATS ===== */
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.stats__item {
+    background: #141414;
+    border-radius: 12px;
+    padding: 16px 8px;
+    text-align: center;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats__icon {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.stats__value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #F5F5F5;
+}
+
+.stats__value--red {
+    color: #E53935;
+}
+
+.stats__label {
+    font-size: 11px;
+    color: #888;
+    margin-top: 2px;
+}
+
+/* ===== HISTORY ===== */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.history-header span:first-child {
+    font-size: 14px;
+    font-weight: 700;
+    color: #F5F5F5;
+    letter-spacing: 1px;
+}
+
+.history-header__arrow {
+    font-size: 18px;
+    color: #E53935;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.history-empty {
+    background: #141414;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.history-empty__icon {
+    font-size: 48px;
+    margin-bottom: 8px;
+}
+
+.history-empty__text {
+    font-size: 13px;
+    color: #888;
+}
+
+.history-item {
+    display: flex;
+    align-items: center;
+    background: #141414;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    gap: 12px;
+}
+
+.history-item__icon {
+    font-size: 24px;
+    width: 40px;
+    text-align: center;
+}
+
+.history-item__info {
+    flex: 1;
+}
+
+.history-item__amount {
+    font-weight: 700;
+    color: #F5F5F5;
+    font-size: 15px;
+}
+
+.history-item__date {
+    font-size: 12px;
+    color: #888;
+}
+
+.history-item__result {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/* ===== FAB ===== */
+.fab {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #E53935;
+    color: #fff;
+    font-size: 32px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.4);
+    cursor: pointer;
+    transition: transform 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.fab:active {
+    transform: scale(0.92);
+}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    background: #141414;
+    border-top: 1px solid #2A2A2A;
+    padding: 6px 0 12px;
+    z-index: 200;
+    max-width: 100%;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0;
+    cursor: pointer;
+    transition: color 0.2s;
+    color: #888;
+    border: none;
+    background: none;
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-item.active {
+    color: #E53935;
+}
+
+.nav-icon {
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* ===== BOOKMAKERS ===== */
+.bookmaker-card {
+    background: #141414;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.bookmaker-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #2A2A2A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #E53935;
+}
+
+.bookmaker-btn {
+    width: 100%;
+    padding: 12px;
+    background: #E53935;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.bookmaker-btn:hover {
+    background: #C62828;
+}
+
+/* ===== SETTINGS ===== */
+.settings-btn {
+    padding: 10px 16px;
+    background: #E53935;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    flex: 1;
+    transition: background 0.2s;
+}
+
+.settings-btn:hover {
+    background: #C62828;
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.modal-content {
+    background: #1A1A1A;
+    padding: 24px;
+    border-radius: 16px;
+    max-width: 400px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid #E53935;
+}
+
+.modal-content h2 {
+    color: #E53935;
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.modal-content label {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 4px;
+    margin-top: 12px;
+}
+
+.modal-content select,
+.modal-content input {
+    width: 100%;
+    padding: 10px 12px;
+    background: #2A2A2A;
+    color: #F5F5F5;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    font-family: inherit;
+}
+
+.modal-content select:focus,
+.modal-content input:focus {
+    border-color: #E53935;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.modal-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    flex: 1;
+    color: white;
+    transition: background 0.2s;
+}
+
+.modal-btn--win {
+    background: #333;
+}
+.modal-btn--win.active {
+    background: #4CAF50;
+}
+.modal-btn--lose {
+    background: #333;
+}
+.modal-btn--lose.active {
+    background: #E53935;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.modal-btn--cancel {
+    background: #333;
+    flex: 1;
+}
+.modal-btn--cancel:hover {
+    background: #444;
+}
+.modal-btn--save {
+    background: #E53935;
+    flex: 1;
+}
+.modal-btn--save:hover {
+    background: #C62828;
+}
+
+/* ===== RESPONSIVE (iPhone) ===== */
+@media (max-width: 420px) {
+    body {
+        padding: 12px 12px 75px;
+    }
+    .balance-card__value {
+        font-size: 28px;
+    }
+    .stats__item {
+        padding: 12px 4px;
+        min-height: 90px;
+    }
+    .stats__value {
+        font-size: 15px;
+    }
+    .modal-content {
+        padding: 16px;
+        margin: 8px;
+    }
+    .header__title {
+        font-size: 24px;
+    }
+    .fab {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        bottom: 80px;
+        right: 16px;
+    }
+    .bottom-nav {
+        padding: 4px 0 10px;
+    }
+    .nav-icon {
+        font-size: 20px;
+    }
+    .nav-label {
+        font-size: 9px;
+    }
+}
+
+/* ===== iPhone SE / маленькие экраны ===== */
+@media (max-width: 360px) {
+    .stats {
+        gap: 4px;
+    }
+    .stats__item {
+        min-height: 80px;
+        padding: 8px 4px;
+    }
+    .stats__value {
+        font-size: 13px;
+    }
+    .balance-card__value {
+        font-size: 24px;
+    }
+    .fab {
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+        bottom: 74px;
+        right: 12px;
+    }
+}
+
+/* ===== Безопасная зона для iPhone X и выше ===== */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .bottom-nav {
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    }
+    body {
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    }
+    .fab {
+        bottom: calc(90px + env(safe-area-inset-bottom));
+    }
+}

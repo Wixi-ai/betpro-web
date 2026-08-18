@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BetPro</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/ic_launcher-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#E53935">
+</head>
+
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- ===== КОНТЕНТ СТРАНИЦ ===== -->
+    <div class="page-content">
+
+      <!-- ===== СТРАНИЦА 1: ГЛАВНАЯ ===== -->
+      <div class="page active" id="page-main">
+        <div class="header">
+          <div class="header__title">ГЛАВНАЯ</div>
+        </div>
+
+        <div class="balance-card">
+          <div class="balance-card__label">МОЙ БАНК</div>
+          <div class="balance-card__value" id="balance">0 ₽</div>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-card__label">ЦЕЛЬ</div>
+          <div class="goal-card__progress-bar">
+            <div class="goal-card__progress-fill" id="goalProgress" style="width:0%;"></div>
+          </div>
+          <div class="goal-card__text" id="goalText">0 / 20000 ₽</div>
+        </div>
+
+        <div class="stats">
+          <div class="stats__item">
+            <div class="stats__icon">⚖️</div>
+            <div class="stats__value stats__value--red" id="wl">0W / 0L</div>
+            <div class="stats__label">W/L</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__icon">💓</div>
+            <div class="stats__value" id="totalBets">0</div>
+            <div class="stats__label">ставки</div>
+          </div>
+          <div class="stats__item">
+            <div class="stats__icon">⏱️</div>
+            <div class="stats__value" id="timePlayed">0 мин</div>
+            <div class="stats__label">в игре</div>
+          </div>
+        </div>
+
+        <div class="history-header">
+          <span>ИСТОРИЯ СТАВОК</span>
+          <span class="history-header__arrow" id="viewAll">></span>
+        </div>
+
+        <div id="historyList"></div>
+
+        <button class="fab" id="addBetBtn">+</button>
+      </div>
+
+      <!-- ===== СТРАНИЦА 2: ИСТОРИЯ ===== -->
+      <div class="page" id="page-history">
+        <div class="header">
+          <div class="header__title">ИСТОРИЯ</div>
+        </div>
+        <div id="historyFullList" style="margin-top: 8px;">
+          <!-- сюда подгружается вся история -->
+        </div>
+      </div>
+
+      <!-- ===== СТРАНИЦА 3: АНАЛИТИКА ===== -->
+      <div class="page" id="page-analytics">
+        <div class="header">
+          <div class="header__title">АНАЛИТИКА</div>
+        </div>
+
+        <div class="balance-card" style="margin-top: 8px;">
+          <div class="balance-card__label">ОБЩАЯ СТАТИСТИКА</div>
+          <div style="display: flex; justify-content: space-around; margin-top: 12px;">
+            <div>
+              <div style="font-size: 12px; color: #888;">Всего</div>
+              <div style="font-size: 22px; font-weight: 700; color: #fff;" id="analyticsTotal">0</div>
+            </div>
+            <div>
+              <div style="font-size: 12px; color: #888;">Выигрыши</div>
+              <div style="font-size: 22px; font-weight: 700; color: #4CAF50;" id="analyticsWins">0</div>
+            </div>
+            <div>
+              <div style="font-size: 12px; color: #888;">Проигрыши</div>
+              <div style="font-size: 22px; font-weight: 700; color: #E53935;" id="analyticsLosses">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-card__label">ВИНРЕЙТ</div>
+          <div style="font-size: 28px; font-weight: 700; color: #E53935; margin: 4px 0;" id="analyticsWinrate">0%</div>
+          <div class="goal-card__progress-bar">
+            <div class="goal-card__progress-fill" id="winrateProgress" style="width:0%;"></div>
+          </div>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-card__label">ПРИБЫЛЬ</div>
+          <div style="font-size: 28px; font-weight: 700; color: #F5F5F5; margin: 4px 0;" id="analyticsProfit">0 ₽</div>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-card__label">ЛУЧШАЯ СТАВКА</div>
+          <div style="font-size: 16px; color: #888; margin: 4px 0;" id="analyticsBest">Пока нет ставок</div>
+        </div>
+      </div>
+
+      <!-- ===== СТРАНИЦА 4: БУКМЕКЕРЫ ===== -->
+      <div class="page" id="page-bookmakers">
+        <div class="header">
+          <div class="header__title">БУКМЕКЕРЫ</div>
+        </div>
+        <div id="bookmakersList" style="margin-top: 8px;">
+          <!-- сюда подгружаются карточки БК -->
+        </div>
+      </div>
+
+      <!-- ===== СТРАНИЦА 5: НАСТРОЙКИ ===== -->
+      <div class="page" id="page-settings">
+        <div class="header">
+          <div class="header__title">НАСТРОЙКИ</div>
+        </div>
+
+        <div class="balance-card" style="margin-top: 8px;">
+          <div class="balance-card__label">БАЛАНС</div>
+          <div class="balance-card__value" id="settingsBalance">0 ₽</div>
+          <div style="display: flex; gap: 8px; margin-top: 12px;">
+            <button class="settings-btn" id="depositBtn">Пополнить</button>
+            <button class="settings-btn" id="withdrawBtn">Вывести</button>
+          </div>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-card__label">ЦЕЛЬ ПО БАЛАНСУ</div>
+          <div style="font-size: 18px; font-weight: 700; color: #F5F5F5; margin: 4px 0;" id="settingsGoal">20000 ₽</div>
+          <button class="settings-btn" id="setGoalBtn" style="width: 100%; margin-top: 8px;">Изменить цель</button>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-card__label">ДАННЫЕ</div>
+          <button class="settings-btn" id="clearDataBtn"
+            style="width: 100%; margin-top: 8px; background: #C62828;">Очистить все данные</button>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-card__label">О ПРИЛОЖЕНИИ</div>
+          <div style="font-size: 16px; font-weight: 700; color: #F5F5F5; margin: 4px 0;">BetPro</div>
+          <div style="font-size: 13px; color: #888;">Версия 1.0.0</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== НИЖНЕЕ МЕНЮ ===== -->
+    <nav class="bottom-nav">
+      <div class="nav-item active" data-page="page-main">
+        <div class="nav-icon">🏠</div>
+        <div class="nav-label">Главная</div>
+      </div>
+      <div class="nav-item" data-page="page-history">
+        <div class="nav-icon">📜</div>
+        <div class="nav-label">История</div>
+      </div>
+      <div class="nav-item" data-page="page-analytics">
+        <div class="nav-icon">📊</div>
+        <div class="nav-label">Аналитика</div>
+      </div>
+      <div class="nav-item" data-page="page-bookmakers">
+        <div class="nav-icon">🎰</div>
+        <div class="nav-label">БК</div>
+      </div>
+      <div class="nav-item" data-page="page-settings">
+        <div class="nav-icon">⚙️</div>
+        <div class="nav-label">Настройки</div>
+      </div>
+    </nav>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ДЛЯ СТАВКИ ===== -->
+    <div class="modal" id="betModal">
+      <div class="modal-content">
+        <h2>Добавить ставку</h2>
+        <label>Букмекер</label>
+        <select id="modalBookmaker">
+          <option value="Pari">Pari</option>
+          <option value="Фонбет">Фонбет</option>
+          <option value="Betcity">Betcity</option>
+        </select>
+        <label>Сумма (₽)</label>
+        <input type="number" id="modalAmount" placeholder="1000" inputmode="decimal">
+        <label>Коэффициент</label>
+        <input type="number" id="modalOdds" placeholder="2.50" step="0.01" inputmode="decimal">
+        <div class="modal-buttons">
+          <button class="modal-btn modal-btn--win active" id="modalWin">ВЫИГРЫШ</button>
+          <button class="modal-btn modal-btn--lose" id="modalLose">ПРОИГРЫШ</button>
+        </div>
+        <div class="modal-actions">
+          <button class="modal-btn modal-btn--cancel" id="modalCancel">ОТМЕНА</button>
+          <button class="modal-btn modal-btn--save" id="modalSave">СОХРАНИТЬ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ДЛЯ ЦЕЛИ ===== -->
+    <div class="modal" id="goalModal">
+      <div class="modal-content">
+        <h2>Установить цель</h2>
+        <label>Новая цель (₽)</label>
+        <input type="number" id="goalInput" placeholder="20000" inputmode="decimal">
+        <div class="modal-actions" style="margin-top: 16px;">
+          <button class="modal-btn modal-btn--cancel" id="goalCancel">ОТМЕНА</button>
+          <button class="modal-btn modal-btn--save" id="goalSave">УСТАНОВИТЬ</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+
+  <!-- ===== РЕГИСТРАЦИЯ SERVICE WORKER ===== -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('✅ Service Worker зарегистрирован'))
+        .catch(err => console.warn('⚠️ Ошибка SW:', err));
+    }
+  </script>
+
+</body>
+
+</html>
