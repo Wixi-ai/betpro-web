@@ -7,7 +7,7 @@
   <title>BetPro</title>
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icons/ic_launcher-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#E53935">
@@ -72,9 +72,7 @@
         <div class="header">
           <div class="header__title">ИСТОРИЯ</div>
         </div>
-        <div id="historyFullList" style="margin-top: 8px;">
-          <!-- сюда подгружается вся история -->
-        </div>
+        <div id="historyFullList" style="margin-top: 8px;"></div>
       </div>
 
       <!-- ===== СТРАНИЦА 3: АНАЛИТИКА ===== -->
@@ -125,9 +123,7 @@
         <div class="header">
           <div class="header__title">БУКМЕКЕРЫ</div>
         </div>
-        <div id="bookmakersList" style="margin-top: 8px;">
-          <!-- сюда подгружаются карточки БК -->
-        </div>
+        <div id="bookmakersList" style="margin-top: 8px;"></div>
       </div>
 
       <!-- ===== СТРАНИЦА 5: НАСТРОЙКИ ===== -->
@@ -235,7 +231,7 @@
   <!-- ===== РЕГИСТРАЦИЯ SERVICE WORKER ===== -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('/betpro-web/sw.js')
         .then(() => console.log('✅ Service Worker зарегистрирован'))
         .catch(err => console.warn('⚠️ Ошибка SW:', err));
     }

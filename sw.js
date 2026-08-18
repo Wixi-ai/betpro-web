@@ -1,13 +1,15 @@
 // ===== SERVICE WORKER =====
 const CACHE_NAME = 'betpro-v1';
+const BASE_PATH = '/betpro-web/';
+
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/app.js',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png'
+  BASE_PATH,
+  BASE_PATH + 'index.html',
+  BASE_PATH + 'style.css',
+  BASE_PATH + 'app.js',
+  BASE_PATH + 'manifest.json',
+  BASE_PATH + 'icon-192.png',
+  BASE_PATH + 'icon-512.png'
 ];
 
 // Установка — кэшируем все файлы
@@ -33,8 +35,19 @@ self.addEventListener('activate', event => {
 
 // Перехват запросов — отдаём из кэша, если есть
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-  );
+  const url = new URL(event.request.url);
+  // Если запрос к нашему сайту — пробуем кэш
+  if (url.pathname.startsWith(BASE_PATH) || url.pathname === '/betpro-web/') {
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => {
+          if (response) return response;
+          return fetch(event.request);
+        })
+        .catch(() => {
+          // Если нет интернета — показываем заглушку
+          return caches.match(BASE_PATH + 'index.html');
+        })
+    );
+  }
 });
