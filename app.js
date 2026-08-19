@@ -85,7 +85,7 @@ function updateUI() {
   renderBookmakers();
 }
 
-// ===== ИСТОРИЯ (главная) =====
+// ===== ИСТОРИЯ (главная) — С БУКМЕКЕРОМ И КОЭФФИЦИЕНТОМ =====
 function renderHistory() {
   const container = document.getElementById('historyList');
   if (state.bets.length === 0) {
@@ -102,14 +102,12 @@ function renderHistory() {
     const profit = bet.isWin ? (bet.amount * bet.odds - bet.amount) : -bet.amount;
     const sign = profit >= 0 ? '+' : '';
     const color = bet.isWin ? '#4CAF50' : '#E53935';
-    const icon = bet.isWin ? '✅' : '❌';
     const dateStr = bet.date ? new Date(bet.date).toLocaleDateString('ru-RU') : '—';
     return `
             <div class="history-item">
-                <div class="history-item__icon">${icon}</div>
-                <div class="history-item__info">
+                <div class="history-item__info" style="flex:1;">
                     <div class="history-item__amount">${bet.amount} ₽</div>
-                    <div class="history-item__date">${dateStr}</div>
+                    <div class="history-item__date">${bet.bookmaker} • Кф ${bet.odds.toFixed(2)} • ${dateStr}</div>
                 </div>
                 <div class="history-item__result" style="color:${color}">${sign}${profit.toFixed(0)} ₽</div>
             </div>
@@ -117,7 +115,7 @@ function renderHistory() {
   }).join('');
 }
 
-// ===== ИСТОРИЯ (полная) =====
+// ===== ИСТОРИЯ (полная) — С БУКМЕКЕРОМ И КОЭФФИЦИЕНТОМ =====
 function renderFullHistory() {
   const container = document.getElementById('historyFullList');
   if (state.bets.length === 0) {
@@ -134,14 +132,12 @@ function renderFullHistory() {
     const profit = bet.isWin ? (bet.amount * bet.odds - bet.amount) : -bet.amount;
     const sign = profit >= 0 ? '+' : '';
     const color = bet.isWin ? '#4CAF50' : '#E53935';
-    const icon = bet.isWin ? '✅' : '❌';
     const dateStr = bet.date ? new Date(bet.date).toLocaleDateString('ru-RU') : '—';
     return `
             <div class="history-item">
-                <div class="history-item__icon">${icon}</div>
-                <div class="history-item__info">
+                <div class="history-item__info" style="flex:1;">
                     <div class="history-item__amount">${bet.amount} ₽</div>
-                    <div class="history-item__date">${dateStr}</div>
+                    <div class="history-item__date">${bet.bookmaker} • Кф ${bet.odds.toFixed(2)} • ${dateStr}</div>
                 </div>
                 <div class="history-item__result" style="color:${color}">${sign}${profit.toFixed(0)} ₽</div>
             </div>
@@ -305,14 +301,12 @@ document.querySelectorAll('.nav-item').forEach(item => {
     const pageId = this.dataset.page;
     document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
-    // обновляем данные при переключении
     updateUI();
   });
 });
 
 // ===== ПРОСМОТР ВСЕЙ ИСТОРИИ =====
 document.getElementById('viewAll').addEventListener('click', () => {
-  // переключаем на вкладку История
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
   document.querySelector('[data-page="page-history"]').classList.add('active');
   document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
