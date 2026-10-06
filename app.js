@@ -53,7 +53,7 @@ const bookmakers = [
     description: 'Один из крупнейших букмекеров, основанный в 2003 году.',
     advantages: '• Минимальная маржа 2.3-3.5%\n• Кэшбэк до 25%\n• Три фрибета по 500 ₽',
     bonus: 'Кэшбэк до 25% за месяц',
-    link: 'https://betcity.ru'
+    link: 'https://betsxwin.pro/click?o=6&a=52219&tsource=1046&link_id=518'
   }
 ];
 
