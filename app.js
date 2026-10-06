@@ -58,7 +58,7 @@ const bookmakers = [
   {
     id: 'winline',
     shortName: 'Wl',
-    fullName: 'Betcity',
+    fullName: 'Winline',
     description: 'Российская букмекерская компания. Основана в 2009 году.',
     advantages: '• Минимальная маржа 2.3-3.5%\n• Кэшбэк до 25%\n• Три фрибета по 500 ₽',
     bonus: 'Кэшбэк до 25% за месяц',
