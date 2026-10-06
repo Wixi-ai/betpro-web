@@ -35,7 +35,7 @@ const bookmakers = [
     description: 'Букмекерская компания с биржевым модулем и отложенными ставками.',
     advantages: '• Биржевой модуль для обмена ставками\n• Отложенные ставки\n• Ранний выкуп позиции',
     bonus: 'Фрибет 3 000 ₽ за регистрацию',
-    link: 'https://pari.ru'
+    link: ''
   },
   {
     id: 'fonbet',
@@ -44,7 +44,7 @@ const bookmakers = [
     description: 'Первый букмекер России, лидер по количеству спортивных событий.',
     advantages: '• Фрибет до 15 000 ₽\n• Бесплатные трансляции\n• Центр статистики',
     bonus: 'Бесплатные трансляции матчей',
-    link: 'https://fonbet.ru'
+    link: ''
   },
   {
     id: 'betcity',
@@ -54,6 +54,15 @@ const bookmakers = [
     advantages: '• Минимальная маржа 2.3-3.5%\n• Кэшбэк до 25%\n• Три фрибета по 500 ₽',
     bonus: 'Кэшбэк до 25% за месяц',
     link: 'https://betsxwin.pro/click?o=6&a=52219&tsource=1046&link_id=518'
+  }
+  {
+    id: 'winline',
+    shortName: 'Wl',
+    fullName: 'Betcity',
+    description: 'Российская букмекерская компания. Основана в 2009 году.',
+    advantages: '• Минимальная маржа 2.3-3.5%\n• Кэшбэк до 25%\n• Три фрибета по 500 ₽',
+    bonus: 'Кэшбэк до 25% за месяц',
+    link: 'https://betsxwin.pro/click?o=159&a=52219&tsource=1046&link_id=4717'
   }
 ];
 
